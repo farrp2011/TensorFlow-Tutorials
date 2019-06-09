@@ -164,6 +164,7 @@ import os
 import time
 import csv
 import argparse
+import cv2 as cv
 
 ########################################################################
 # File-paths are global variables for convenience so they don't
@@ -438,7 +439,8 @@ def _pre_process_image(image):
     img = _rgb_to_grayscale(image)
 
     # Resize to the desired size using SciPy for convenience.
-    img = scipy.misc.imresize(img, size=state_img_size, interp='bicubic')
+    #img = scipy.misc.imresize(img, size=state_img_size, interp='bicubic') #scipy.misc.imresize is deprecated
+    img = cv.resize(img,None,fx=state_height, fy=state_width, interpolation = cv.INTER_CUBIC)
 
     return img
 
